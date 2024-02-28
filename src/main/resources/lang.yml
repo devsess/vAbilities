@@ -1,0 +1,38 @@
+ANTI-TRAP-EFFECT:
+  INTERACT: "&cYou dont interact blocks for {cooldown}."
+  BLOCK-PLACE: "&cYou dont place blocks for {cooldown}."
+  BLOCK-BREAK: "&cYou dont break blocks for {cooldown}."
+  ALREADY-HAS: "&cThis player is already under the effects of the antitrapper."
+
+COOLDOWN:
+  GLOBAL: "&cYou cannot use another abilitie for {cooldown}."
+  ABILITY: "&cYou need to wait {cooldown} to use {ability}"
+
+ENVIROMENT:
+  NETHER: "&cYou cannot use {ability} in the nether."
+  END: "You cannot use {ability} in the end"
+
+NO-PERMISSIONS: "&cYou dont have permissions."
+HIT-COUNT: "You have {hits}/{max-hits} hits"
+
+EXECUTE:
+  STRENGTH:
+    - ""
+    - "&4&l{player}"
+    - "&cYou has been succesfully used {ability}"
+    - "&cYou are on cooldown for {time}"
+    - ""
+  RESISTANCE:
+    - ""
+    - "&4&l{player}"
+    - "&cYou has been succesfully used {ability}"
+    - "&cYou are on cooldown for {time}"
+    - ""
+  EXOTIC-BONE:
+    - ""
+    - "&4&l{player}"
+    - "&cYou has been succesfully used {ability}"
+    - "&cYou are on cooldown for {time}"
+    - ""
+
+

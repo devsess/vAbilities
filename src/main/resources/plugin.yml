@@ -1,0 +1,7 @@
+name: vAbilities
+version: '${project.version}'
+main: dev.ses.vabilities.vAbilities
+author: devses
+commands:
+  abilities:
+    aliases: ["ability", "vabilities", "vabilities"]
