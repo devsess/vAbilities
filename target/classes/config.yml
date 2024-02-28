@@ -1,6 +1,0 @@
-GLOBAL-COOLDOWN:
-  ENABLED: true
-  TIME: 10 #in seconds.
-
-LUNAR-CLIENT: true
-

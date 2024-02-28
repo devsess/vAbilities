@@ -1,7 +1,0 @@
-name: vAbilities
-version: '1.0-SNAPSHOT'
-main: dev.ses.vabilities.vAbilities
-author: devses
-commands:
-  abilities:
-    aliases: ["ability", "vabilities", "vabilities"]
