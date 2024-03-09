@@ -6,6 +6,8 @@ import dev.ses.vabilities.utils.CooldownUtil;
 import dev.ses.vabilities.utils.Utils;
 import dev.ses.vabilities.utils.config.Config;
 import dev.ses.vabilities.vAbilities;
+import lombok.Getter;
+import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -15,14 +17,22 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class AbilityListener implements Listener {
 
-    private final HashBasedTable<UUID, UUID, Integer> hitCount;
+    private HashBasedTable<UUID, UUID, Integer> hitCount;
+
+    @Getter
+    private static Map<UUID, UUID> lastDamager;
+
     public AbilityListener(){
         this.hitCount = HashBasedTable.create();
+        lastDamager = new HashMap<>();
     }
 
     @EventHandler
@@ -57,10 +67,7 @@ public class AbilityListener implements Listener {
                     return;
                 }
 
-                if (CooldownUtil.hasCooldown("DENY-BLOCK", damaged)){
-                    damager.sendMessage(Color.translate(vAbilities.getInstance().getLangFile().getString("ANTI-TRAP-EFFECT.ALREADY-HAS")));
-                    return;
-                }
+
 
                 hitCount.put(damager.getUniqueId(), damaged.getUniqueId(), (hitCount.contains(damager.getUniqueId(), damaged.getUniqueId()) ? hitCount.get(damager.getUniqueId(), damaged.getUniqueId())+1 : 1));
                 if(hitCount.get(damager.getUniqueId(), damaged.getUniqueId()) < vAbilities.getInstance().getAbilitiesFile().getInt("ABILITIES."+ability.getName()+".HITS")){
@@ -69,17 +76,13 @@ public class AbilityListener implements Listener {
                             .replace("{max-hits}", String.valueOf(vAbilities.getInstance().getAbilitiesFile().getInt("ABILITIES."+ability.getName()+".HITS")))));
                     return;
                 }
-
                 ability.onHitPlayer(damager, damaged);
-                ability.sendExecuteMessage(damager);
-                ability.setCooldown(damager);
 
-                if (damager.getItemInHand().getAmount() > 1) {
-                    damager.getItemInHand().setAmount(damager.getItemInHand().getAmount() - 1);
-                } else {
-                    damager.setItemInHand(null);
+                if (ability.isExecute()){
+                    ability.sendExecuteMessage(damager);
+                    ability.setCooldown(damager);
+                    ability.decrementItem(damager);
                 }
-                damager.updateInventory();
             }
         });
     }
@@ -118,15 +121,12 @@ public class AbilityListener implements Listener {
                     }
 
                     ability.onRight(event.getPlayer());
-                    ability.sendExecuteMessage(event.getPlayer());
-                    ability.setCooldown(event.getPlayer());
-
-                    if (event.getPlayer().getItemInHand().getAmount() > 1) {
-                        event.getPlayer().getItemInHand().setAmount(event.getPlayer().getItemInHand().getAmount() - 1);
-                    } else {
-                        event.getPlayer().setItemInHand(null);
+                    if (ability.isExecute()){
+                        ability.sendExecuteMessage(event.getPlayer());
+                        ability.setCooldown(event.getPlayer());
+                        ability.decrementItem(event.getPlayer());
                     }
-                    event.getPlayer().updateInventory();
+
                 }
 
             });
@@ -172,5 +172,35 @@ public class AbilityListener implements Listener {
             blockBreakEvent.setCancelled(true);
             player.sendMessage(Color.translate(vAbilities.getInstance().getLangFile().getString("ANTI-TRAP-EFFECT.BLOCK-BREAK")
                     .replace("{cooldown}", CooldownUtil.getCooldown("DENY-BLOCK", player))));        }
+    }
+
+    //Get last player damager
+    @EventHandler
+    public void onPlayerHitPlayer(EntityDamageByEntityEvent event){
+        if (!(event.getDamager() instanceof  Player) || !(event.getEntity() instanceof  Player)) return;
+
+        UUID damagerUUID = event.getDamager().getUniqueId();
+        UUID entityUUID = event.getEntity().getUniqueId();
+
+        if (lastDamager.containsKey(entityUUID)){
+            lastDamager.remove(entityUUID);
+            return;
+        }
+
+        lastDamager.put(entityUUID, damagerUUID);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                lastDamager.remove(entityUUID, damagerUUID);
+            }
+        }.runTaskLater(vAbilities.getInstance(), 15*20L);
+    }
+
+    public static Player getLastDamager(UUID uuid){
+        return Bukkit.getPlayer(lastDamager.get(uuid));
+    }
+
+    public static Player getLastDamager(Player player){
+        return Bukkit.getPlayer(lastDamager.get(player.getUniqueId()));
     }
 }

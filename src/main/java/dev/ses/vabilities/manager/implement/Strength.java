@@ -14,6 +14,8 @@ public class Strength extends Ability {
 
     @Override
     public void onRight(Player player) {
+
         player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 6*20, 1));
+        super.onRight(player);
     }
 }

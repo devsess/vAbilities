@@ -1,6 +1,7 @@
 package dev.ses.vabilities.manager;
 
 import dev.ses.vabilities.manager.implement.ExoticBone;
+import dev.ses.vabilities.manager.implement.NinjaStar;
 import dev.ses.vabilities.manager.implement.Resistance;
 import dev.ses.vabilities.manager.implement.Strength;
 import dev.ses.vabilities.utils.Color;
@@ -25,6 +26,7 @@ public abstract class Ability {
     private int data, time;
     private ItemStack abilityItem;
     private List<String> lore;
+    private boolean execute;
     private static List<Ability> abilities;
 
     public Ability(String name, String type) {
@@ -44,6 +46,7 @@ public abstract class Ability {
         abilities.add(new Strength());
         abilities.add(new Resistance());
         abilities.add(new ExoticBone());
+        abilities.add(new NinjaStar());
 
         Bukkit.getPluginManager().registerEvents(new AbilityListener(), vAbilities.getInstance());
     }
@@ -62,6 +65,15 @@ public abstract class Ability {
         }
     }
 
+    public void decrementItem(Player player){
+        if (player.getItemInHand().getAmount() > 1) {
+            player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
+        } else {
+            player.setItemInHand(null);
+        }
+        player.updateInventory();
+    }
+
     public void setCooldown(Player player){
         CooldownUtil.setCooldown(getName(), player, TimeUnit.SECONDS.toMillis(getTime()));
     }
@@ -78,7 +90,9 @@ public abstract class Ability {
                 itemEvent.getItemMeta().getLore().equals(ability.getAbilityItem().getItemMeta().getLore()));
     }
 
-    protected void onRight(Player player) {}
+    protected void onRight(Player player) {
+        setExecute(true);
+    }
 
     protected void onHitPlayer(Player damager, Player damaged) {}
 }
