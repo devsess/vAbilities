@@ -44,7 +44,7 @@ public class Paralyzer extends Ability {
                         return;
                     }
                     damaged.removeMetadata("Paralyzed",  vAbilities.getInstance());
-                    damaged.sendMessage(Color.translate("&aYa se te pasó el efecto, gordito"));
+                    damaged.sendMessage(Color.translate("&aNow you can move"));
                 }
             }.runTaskLater(vAbilities.getInstance(), 4*20L);
             return;
