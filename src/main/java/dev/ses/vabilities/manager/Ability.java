@@ -1,9 +1,6 @@
 package dev.ses.vabilities.manager;
 
-import dev.ses.vabilities.manager.implement.ExoticBone;
-import dev.ses.vabilities.manager.implement.NinjaStar;
-import dev.ses.vabilities.manager.implement.Resistance;
-import dev.ses.vabilities.manager.implement.Strength;
+import dev.ses.vabilities.manager.implement.*;
 import dev.ses.vabilities.utils.Color;
 import dev.ses.vabilities.utils.CooldownUtil;
 import dev.ses.vabilities.utils.Utils;
@@ -47,6 +44,7 @@ public abstract class Ability {
         abilities.add(new Resistance());
         abilities.add(new ExoticBone());
         abilities.add(new NinjaStar());
+        abilities.add(new Paralyzer());
 
         Bukkit.getPluginManager().registerEvents(new AbilityListener(), vAbilities.getInstance());
     }

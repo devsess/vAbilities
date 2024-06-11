@@ -39,3 +39,13 @@ ABILITIES:
       - ""
     COOLDOWN: 60 # in seconds
 
+  PARALYZER:
+    DISPLAYNAME: "&9&lParalyzer"
+    MATERIAL: "EGG"
+    DATA: 0
+    LORE:
+      - ""
+      - "&6Click here to launch egg to paralyze target."
+      - ""
+    COOLDOWN: 120 # in seconds
+

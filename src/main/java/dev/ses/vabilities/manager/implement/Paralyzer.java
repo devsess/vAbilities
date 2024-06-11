@@ -23,9 +23,6 @@ public class Paralyzer extends Ability {
     protected void onRight(Player player) {
         Egg egg = player.launchProjectile(Egg.class);
         egg.setMetadata("ParalyzerLaunched", new FixedMetadataValue(vAbilities.getInstance(), true));
-
-
-
         super.onRight(player);
     }
 
