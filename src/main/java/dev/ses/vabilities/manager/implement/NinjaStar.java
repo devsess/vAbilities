@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class NinjaStar extends Ability {
+
     public NinjaStar() {
         super("NINJA-STAR", "RIGHT");
     }
