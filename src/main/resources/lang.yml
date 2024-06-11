@@ -41,5 +41,11 @@ EXECUTE:
     - "&cYou has been succesfully used {ability}"
     - "&cYou are on cooldown for {time}"
     - ""
+  Paralyzer:
+    - ""
+    - "&4&l{player}"
+    - "&cYou has been succesfully used {ability}"
+    - "&cYou are on cooldown for {time}"
+    - ""
 
 
