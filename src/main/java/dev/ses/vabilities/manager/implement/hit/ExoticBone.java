@@ -1,4 +1,4 @@
-package dev.ses.vabilities.manager.implement;
+package dev.ses.vabilities.manager.implement.hit;
 
 import dev.ses.vabilities.manager.Ability;
 import dev.ses.vabilities.utils.Color;
@@ -6,7 +6,6 @@ import dev.ses.vabilities.utils.CooldownUtil;
 import dev.ses.vabilities.vAbilities;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 import java.util.concurrent.TimeUnit;
 

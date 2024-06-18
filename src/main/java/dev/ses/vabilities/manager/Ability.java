@@ -1,6 +1,10 @@
 package dev.ses.vabilities.manager;
 
-import dev.ses.vabilities.manager.implement.*;
+import dev.ses.vabilities.manager.implement.hit.ExoticBone;
+import dev.ses.vabilities.manager.implement.right.NinjaStar;
+import dev.ses.vabilities.manager.implement.right.Paralyzer;
+import dev.ses.vabilities.manager.implement.right.Resistance;
+import dev.ses.vabilities.manager.implement.right.Strength;
 import dev.ses.vabilities.utils.Color;
 import dev.ses.vabilities.utils.CooldownUtil;
 import dev.ses.vabilities.utils.Utils;
@@ -77,7 +81,11 @@ public abstract class Ability {
     }
 
     public List<String> executeMessage(){
-        return vAbilities.getInstance().getLangFile().getStringList("EXECUTE."+getName());
+        return vAbilities.getInstance().getLangFile().getStringList("ABILITIES-LANG."+getName() + ".EXECUTE");
+    }
+
+    public String getAbilityMessages(String path){
+        return Color.translate(vAbilities.getInstance().getLangFile().getString("ABILITIES-LANG."+getName() + "." +path));
     }
 
     public static boolean isAbility(ItemStack itemEvent, Ability ability){
@@ -92,5 +100,5 @@ public abstract class Ability {
         setExecute(true);
     }
 
-    protected void onHitPlayer(Player damager, Player damaged) {}
+    protected void onHitPlayer(Player damager, Player damaged) {setExecute(true);}
 }

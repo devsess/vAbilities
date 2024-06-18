@@ -16,36 +16,43 @@ NO-PERMISSIONS: "&cYou dont have permissions."
 HIT-COUNT: "You have {hits}/{max-hits} hits"
 NO-LAST-DAMAGER: "&cNo one has hit you in the last 15 seconds."
 
-EXECUTE:
+ABILITIES-LANG:
   STRENGTH:
-    - ""
-    - "&4&l{player}"
-    - "&cYou has been succesfully used {ability}"
-    - "&cYou are on cooldown for {time}"
-    - ""
+    EXECUTE:
+      - ""
+      - "&4&l{player}"
+      - "&cYou has been succesfully used {ability}"
+      - "&cYou are on cooldown for {time}"
+      - ""
   RESISTANCE:
-    - ""
-    - "&4&l{player}"
-    - "&cYou has been succesfully used {ability}"
-    - "&cYou are on cooldown for {time}"
-    - ""
+    EXECUTE:
+      - ""
+      - "&4&l{player}"
+      - "&cYou has been succesfully used {ability}"
+      - "&cYou are on cooldown for {time}"
+      - ""
   EXOTIC-BONE:
-    - ""
-    - "&4&l{player}"
-    - "&cYou has been succesfully used {ability}"
-    - "&cYou are on cooldown for {time}"
-    - ""
+    EXECUTE:
+      - ""
+      - "&4&l{player}"
+      - "&cYou has been succesfully used {ability}"
+      - "&cYou are on cooldown for {time}"
+      - ""
   NINJA-STAR:
-    - ""
-    - "&4&l{player}"
-    - "&cYou has been succesfully used {ability}"
-    - "&cYou are on cooldown for {time}"
-    - ""
-  Paralyzer:
-    - ""
-    - "&4&l{player}"
-    - "&cYou has been succesfully used {ability}"
-    - "&cYou are on cooldown for {time}"
-    - ""
+    EXECUTE:
+      - ""
+      - "&4&l{player}"
+      - "&cYou has been succesfully used {ability}"
+      - "&cYou are on cooldown for {time}"
+      - ""
+  PARALYZER:
+    NOW-MOVE: "&aNow you can move!."
+    EXECUTE:
+      - ""
+      - "&4&l{player}"
+      - "&cYou has been succesfully used {ability}"
+      - "&cYou are on cooldown for {time}"
+      - ""
+
 
 

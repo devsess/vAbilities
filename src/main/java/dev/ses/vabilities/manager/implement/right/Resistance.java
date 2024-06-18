@@ -1,4 +1,4 @@
-package dev.ses.vabilities.manager.implement;
+package dev.ses.vabilities.manager.implement.right;
 
 import dev.ses.vabilities.manager.Ability;
 import org.bukkit.entity.Player;

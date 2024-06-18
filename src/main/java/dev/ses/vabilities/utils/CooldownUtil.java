@@ -43,16 +43,9 @@ public class CooldownUtil {
             return String.format("%2d minutes %2d seconds", TimeUnit.MILLISECONDS.toMinutes(cooldownLeft), TimeUnit.MILLISECONDS.toSeconds(cooldownLeft) % 60);
         }else if (TimeUnit.MILLISECONDS.toSeconds(cooldownLeft) <60){
             return String.format("%2d seconds", TimeUnit.MILLISECONDS.toSeconds(cooldownLeft));
-        }else if (TimeUnit.MILLISECONDS.toSeconds(cooldownLeft) <10){
-            return String.format("%d seconds", TimeUnit.MILLISECONDS.toSeconds(cooldownLeft));
         }else{
             return "";
         }
-    }
-
-    public long millis(String name, Player player){
-        return cooldown.get(name, player.getUniqueId()) - System.currentTimeMillis();
-
     }
 
 }
