@@ -51,7 +51,7 @@ ABILITIES:
 
   RAGE-BALL:
     DISPLAYNAME: "&c&lRageBall"
-    MATERIAL: "SNOWBALL"
+    MATERIAL: "EGG"
     DATA: 0
     LORE:
       - ""
@@ -59,6 +59,5 @@ ABILITIES:
       - "&6and give nearby player negative effects."
       - ""
     COOLDOWN: 120 # in seconds
-    PROJECTILE: "EGG"
 
 

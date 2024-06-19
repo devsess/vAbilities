@@ -1,6 +1,6 @@
 name: vAbilities
 version: '${project.version}'
-main: dev.ses.vabilities.vAbilities
+main: dev.ses.vabilities.Main
 author: devses
 commands:
   abilities:

@@ -2,7 +2,7 @@ package dev.ses.vabilities;
 
 import com.google.common.base.Strings;
 import dev.ses.vabilities.command.AbilityCommand;
-import dev.ses.vabilities.manager.Ability;
+import dev.ses.vabilities.ability.Ability;
 import dev.ses.vabilities.utils.Color;
 import dev.ses.vabilities.utils.ConfigCreator;
 import dev.ses.vabilities.utils.config.Config;
