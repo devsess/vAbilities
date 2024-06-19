@@ -3,7 +3,7 @@ package dev.ses.vabilities.manager.implement.hit;
 import dev.ses.vabilities.manager.Ability;
 import dev.ses.vabilities.utils.Color;
 import dev.ses.vabilities.utils.CooldownUtil;
-import dev.ses.vabilities.vAbilities;
+import dev.ses.vabilities.Main;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
@@ -19,7 +19,7 @@ public class ExoticBone extends Ability implements Listener {
     public void onHitPlayer(Player damager, Player damaged){
 
         if (CooldownUtil.hasCooldown("DENY-BLOCK", damaged)){
-            damager.sendMessage(Color.translate(vAbilities.getInstance().getLangFile().getString("ANTI-TRAP-EFFECT.ALREADY-HAS")));
+            damager.sendMessage(Color.translate(Main.getInstance().getLangFile().getString("ANTI-TRAP-EFFECT.ALREADY-HAS")));
             this.setExecute(false);
             return;
         }

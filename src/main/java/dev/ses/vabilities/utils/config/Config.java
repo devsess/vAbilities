@@ -1,6 +1,6 @@
 package dev.ses.vabilities.utils.config;
 
-import dev.ses.vabilities.vAbilities;
+import dev.ses.vabilities.Main;
 
 public class Config {
 
@@ -9,7 +9,7 @@ public class Config {
 
 
     public Config(){
-        GLOBAL_COOLDOWN_TIME = vAbilities.getInstance().getConfigFile().getInt("GLOBAL-COOLDOWN.TIME");
-        HAS_LUNAR_CLIENT = vAbilities.getInstance().getConfigFile().getBoolean("LUNAR-CLIENT");
+        GLOBAL_COOLDOWN_TIME = Main.getInstance().getConfigFile().getInt("GLOBAL-COOLDOWN.TIME");
+        HAS_LUNAR_CLIENT = Main.getInstance().getConfigFile().getBoolean("LUNAR-CLIENT");
     }
 }

@@ -16,6 +16,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.List;
 
 public class AbilityCommand implements CommandExecutor, TabCompleter {
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 

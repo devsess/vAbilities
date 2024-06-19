@@ -5,7 +5,7 @@ import dev.ses.vabilities.utils.Color;
 import dev.ses.vabilities.utils.CooldownUtil;
 import dev.ses.vabilities.utils.Utils;
 import dev.ses.vabilities.utils.config.Config;
-import dev.ses.vabilities.vAbilities;
+import dev.ses.vabilities.Main;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -56,12 +56,12 @@ public class AbilityListener implements Listener {
                 }
 
                 if (CooldownUtil.hasCooldown("vGLOBAL", damager)){
-                    damager.sendMessage(Color.translate(vAbilities.getInstance().getLangFile().getString("COOLDOWN.GLOBAL").replace("{cooldown}", Utils.timeFormat(Config.GLOBAL_COOLDOWN_TIME))));
+                    damager.sendMessage(Color.translate(Main.getInstance().getLangFile().getString("COOLDOWN.GLOBAL").replace("{cooldown}", Utils.timeFormat(Config.GLOBAL_COOLDOWN_TIME))));
                     return;
                 }
 
                 if (CooldownUtil.hasCooldown(ability.getName(), (Player) event.getDamager())){
-                    damager.sendMessage(Color.translate(vAbilities.getInstance().getLangFile().getString("COOLDOWN.ABILITY")
+                    damager.sendMessage(Color.translate(Main.getInstance().getLangFile().getString("COOLDOWN.ABILITY")
                             .replace("{ability}", ability.getDisplayname())
                             .replace("{cooldown}", CooldownUtil.getCooldown(ability.getName(), damager))));
                     return;
@@ -70,10 +70,10 @@ public class AbilityListener implements Listener {
 
 
                 hitCount.put(damager.getUniqueId(), damaged.getUniqueId(), (hitCount.contains(damager.getUniqueId(), damaged.getUniqueId()) ? hitCount.get(damager.getUniqueId(), damaged.getUniqueId())+1 : 1));
-                if(hitCount.get(damager.getUniqueId(), damaged.getUniqueId()) < vAbilities.getInstance().getAbilitiesFile().getInt("ABILITIES."+ability.getName()+".HITS")){
-                    damager.sendMessage(Color.translate(vAbilities.getInstance().getLangFile().getString("HIT-COUNT")
+                if(hitCount.get(damager.getUniqueId(), damaged.getUniqueId()) < Main.getInstance().getAbilitiesFile().getInt("ABILITIES."+ability.getName()+".HITS")){
+                    damager.sendMessage(Color.translate(Main.getInstance().getLangFile().getString("HIT-COUNT")
                             .replace("{hits}", String.valueOf(hitCount.get(damager.getUniqueId(), damaged.getUniqueId())))
-                            .replace("{max-hits}", String.valueOf(vAbilities.getInstance().getAbilitiesFile().getInt("ABILITIES."+ability.getName()+".HITS")))));
+                            .replace("{max-hits}", String.valueOf(Main.getInstance().getAbilitiesFile().getInt("ABILITIES."+ability.getName()+".HITS")))));
                     return;
                 }
                 ability.onHitPlayer(damager, damaged);
@@ -98,23 +98,23 @@ public class AbilityListener implements Listener {
 
                 if (Ability.isAbility(event.getItem(), ability)){
                     if (event.getPlayer().getWorld().getEnvironment().equals(World.Environment.NETHER)){
-                        event.getPlayer().sendMessage(Color.translate(vAbilities.getInstance().getLangFile().getString("ENVIROMENT.NETHER").replace("{ability}", ability.getDisplayname())));
+                        event.getPlayer().sendMessage(Color.translate(Main.getInstance().getLangFile().getString("ENVIROMENT.NETHER").replace("{ability}", ability.getDisplayname())));
                         return;
                     }
 
                     if (event.getPlayer().getWorld().getEnvironment().equals(World.Environment.THE_END)){
-                        event.getPlayer().sendMessage(Color.translate(vAbilities.getInstance().getLangFile().getString("ENVIROMENT.END").replace("{ability}", ability.getDisplayname())));
+                        event.getPlayer().sendMessage(Color.translate(Main.getInstance().getLangFile().getString("ENVIROMENT.END").replace("{ability}", ability.getDisplayname())));
                         return;
                     }
 
                     if (CooldownUtil.hasCooldown("vGLOBAL", event.getPlayer())){
-                        event.getPlayer().sendMessage(Color.translate(vAbilities.getInstance().getLangFile().getString("COOLDOWN.GLOBAL")
+                        event.getPlayer().sendMessage(Color.translate(Main.getInstance().getLangFile().getString("COOLDOWN.GLOBAL")
                                 .replace("{cooldown}", CooldownUtil.getCooldown("vGLOBAL", event.getPlayer()))));
                         return;
                     }
 
                     if (CooldownUtil.hasCooldown(ability.getName(), event.getPlayer())){
-                        event.getPlayer().sendMessage(Color.translate(vAbilities.getInstance().getLangFile().getString("COOLDOWN.ABILITY")
+                        event.getPlayer().sendMessage(Color.translate(Main.getInstance().getLangFile().getString("COOLDOWN.ABILITY")
                                 .replace("{ability}", ability.getDisplayname())
                                 .replace("{cooldown}", CooldownUtil.getCooldown(ability.getName(), event.getPlayer()))));
                         return;
@@ -151,7 +151,7 @@ public class AbilityListener implements Listener {
         }
         if (CooldownUtil.hasCooldown("DENY-BLOCK", player)) {
             playerInteractEvent.setCancelled(true);
-            player.sendMessage(Color.translate(vAbilities.getInstance().getLangFile().getString("ANTI-TRAP-EFFECT.INTERACT")
+            player.sendMessage(Color.translate(Main.getInstance().getLangFile().getString("ANTI-TRAP-EFFECT.INTERACT")
                     .replace("{cooldown}", CooldownUtil.getCooldown("DENY-BLOCK", player))));
         }
     }
@@ -161,7 +161,7 @@ public class AbilityListener implements Listener {
         final Player player = blockPlaceEvent.getPlayer();
         if (CooldownUtil.hasCooldown("DENY-BLOCK", player)) {
             blockPlaceEvent.setCancelled(true);
-            player.sendMessage(Color.translate(vAbilities.getInstance().getLangFile().getString("ANTI-TRAP-EFFECT.BLOCK-PLACE")
+            player.sendMessage(Color.translate(Main.getInstance().getLangFile().getString("ANTI-TRAP-EFFECT.BLOCK-PLACE")
                     .replace("{cooldown}", CooldownUtil.getCooldown("DENY-BLOCK", player))));        }
     }
 
@@ -170,7 +170,7 @@ public class AbilityListener implements Listener {
         final Player player = blockBreakEvent.getPlayer();
         if (CooldownUtil.hasCooldown("DENY-BLOCK", player)) {
             blockBreakEvent.setCancelled(true);
-            player.sendMessage(Color.translate(vAbilities.getInstance().getLangFile().getString("ANTI-TRAP-EFFECT.BLOCK-BREAK")
+            player.sendMessage(Color.translate(Main.getInstance().getLangFile().getString("ANTI-TRAP-EFFECT.BLOCK-BREAK")
                     .replace("{cooldown}", CooldownUtil.getCooldown("DENY-BLOCK", player))));        }
     }
 
@@ -193,7 +193,7 @@ public class AbilityListener implements Listener {
             public void run() {
                 lastDamager.remove(entityUUID, damagerUUID);
             }
-        }.runTaskLater(vAbilities.getInstance(), 15*20L);
+        }.runTaskLater(Main.getInstance(), 15*20L);
     }
 
     public static Player getLastDamager(UUID uuid){

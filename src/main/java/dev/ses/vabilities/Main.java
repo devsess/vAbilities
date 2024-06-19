@@ -12,10 +12,10 @@ import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 @Getter @Setter
-public final class vAbilities extends JavaPlugin {
+public final class Main extends JavaPlugin {
 
     @Getter
-    private static vAbilities instance;
+    private static Main instance;
     private ConfigCreator configFile, abilitiesFile, langFile;
 
     @Override

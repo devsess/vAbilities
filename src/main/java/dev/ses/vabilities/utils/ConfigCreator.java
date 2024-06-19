@@ -1,6 +1,6 @@
 package dev.ses.vabilities.utils;
 
-import dev.ses.vabilities.vAbilities;
+import dev.ses.vabilities.Main;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
@@ -21,10 +21,10 @@ public class ConfigCreator extends YamlConfiguration {
     private YamlConfiguration configuration;
 
     public ConfigCreator(String name) throws RuntimeException {
-        this.file = new File(vAbilities.getInstance().getDataFolder(), name);
+        this.file = new File(Main.getInstance().getDataFolder(), name);
 
         if(!this.file.exists()) {
-            vAbilities.getInstance().saveResource(name, false);
+            Main.getInstance().saveResource(name, false);
         }
 
         try {

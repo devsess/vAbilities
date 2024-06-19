@@ -1,8 +1,8 @@
 package dev.ses.vabilities.manager.implement.right;
 
 import dev.ses.vabilities.manager.Ability;
-import dev.ses.vabilities.utils.Color;
-import dev.ses.vabilities.vAbilities;
+import dev.ses.vabilities.Main;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Egg;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,12 +16,13 @@ public class Paralyzer extends Ability implements Listener {
 
     public Paralyzer() {
         super("PARALYZER", "RIGHT");
+        Bukkit.getPluginManager().registerEvents(this, Main.getInstance());
     }
 
     @Override
     protected void onRight(Player player) {
         Egg egg = player.launchProjectile(Egg.class);
-        egg.setMetadata("ParalyzerLaunched", new FixedMetadataValue(vAbilities.getInstance(), true));
+        egg.setMetadata("ParalyzerLaunched", new FixedMetadataValue(Main.getInstance(), true));
         super.onRight(player);
     }
 
@@ -35,8 +36,8 @@ public class Paralyzer extends Ability implements Listener {
         if (!egg.hasMetadata("ParalyzerLaunched")){
             return;
         }
-        damaged.setMetadata("Paralyzed", new FixedMetadataValue(vAbilities.getInstance(), null));
-        egg.removeMetadata("ParalyzerLaunched", vAbilities.getInstance());
+        damaged.setMetadata("Paralyzed", new FixedMetadataValue(Main.getInstance(), null));
+        egg.removeMetadata("ParalyzerLaunched", Main.getInstance());
         new BukkitRunnable() {
             @Override
             public void run() {
@@ -44,10 +45,10 @@ public class Paralyzer extends Ability implements Listener {
                     cancel();
                     return;
                 }
-                damaged.removeMetadata("Paralyzed",  vAbilities.getInstance());
+                damaged.removeMetadata("Paralyzed",  Main.getInstance());
                 damaged.sendMessage(getAbilityMessages("NOW-MOVE"));
             }
-        }.runTaskLater(vAbilities.getInstance(), 4*20L);
+        }.runTaskLater(Main.getInstance(), 4*20L);
     }
 
     @EventHandler

@@ -49,3 +49,16 @@ ABILITIES:
       - ""
     COOLDOWN: 120 # in seconds
 
+  RAGE-BALL:
+    DISPLAYNAME: "&c&lRageBall"
+    MATERIAL: "SNOWBALL"
+    DATA: 0
+    LORE:
+      - ""
+      - "&6Click here to launch a snowball to give you positive effects"
+      - "&6and give nearby player negative effects."
+      - ""
+    COOLDOWN: 120 # in seconds
+    PROJECTILE: "EGG"
+
+

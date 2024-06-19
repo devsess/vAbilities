@@ -3,7 +3,7 @@ package dev.ses.vabilities.manager.implement.right;
 import dev.ses.vabilities.manager.Ability;
 import dev.ses.vabilities.manager.AbilityListener;
 import dev.ses.vabilities.utils.Color;
-import dev.ses.vabilities.vAbilities;
+import dev.ses.vabilities.Main;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -17,7 +17,7 @@ public class NinjaStar extends Ability {
     protected void onRight(Player player) {
 
         if (!AbilityListener.getLastDamager().containsKey(player.getUniqueId())){
-            player.sendMessage(Color.translate(vAbilities.getInstance().getLangFile().getString("NO-LAST-DAMAGER")));
+            player.sendMessage(Color.translate(Main.getInstance().getLangFile().getString("NO-LAST-DAMAGER")));
             this.setExecute(false);
             return;
         }
@@ -28,7 +28,7 @@ public class NinjaStar extends Ability {
             public void run() {
                 player.teleport(target.getLocation());
             }
-        }.runTaskLater(vAbilities.getInstance(), 5*20L);
+        }.runTaskLater(Main.getInstance(), 5*20L);
         super.onRight(player);
     }
 }

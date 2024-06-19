@@ -1,15 +1,12 @@
 package dev.ses.vabilities.manager;
 
 import dev.ses.vabilities.manager.implement.hit.ExoticBone;
-import dev.ses.vabilities.manager.implement.right.NinjaStar;
-import dev.ses.vabilities.manager.implement.right.Paralyzer;
-import dev.ses.vabilities.manager.implement.right.Resistance;
-import dev.ses.vabilities.manager.implement.right.Strength;
+import dev.ses.vabilities.manager.implement.right.*;
 import dev.ses.vabilities.utils.Color;
 import dev.ses.vabilities.utils.CooldownUtil;
 import dev.ses.vabilities.utils.Utils;
 import dev.ses.vabilities.utils.item.ItemBuilder;
-import dev.ses.vabilities.vAbilities;
+import dev.ses.vabilities.Main;
 import lombok.Data;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -32,11 +29,11 @@ public abstract class Ability {
 
     public Ability(String name, String type) {
         this.name = name;
-        this.displayname = vAbilities.getInstance().getAbilitiesFile().getString("ABILITIES." + getName()+".DISPLAYNAME");
-        this.material = vAbilities.getInstance().getAbilitiesFile().getString("ABILITIES." + getName()+".MATERIAL");
-        this.data = vAbilities.getInstance().getAbilitiesFile().getInt("ABILITIES." + getName()+".DATA");
-        this.lore = vAbilities.getInstance().getAbilitiesFile().getStringList("ABILITIES." + getName()+".LORE");
-        this.time = vAbilities.getInstance().getAbilitiesFile().getInt("ABILITIES." + getName()+".COOLDOWN");
+        this.displayname = Main.getInstance().getAbilitiesFile().getString("ABILITIES." + getName()+".DISPLAYNAME");
+        this.material = Main.getInstance().getAbilitiesFile().getString("ABILITIES." + getName()+".MATERIAL");
+        this.data = Main.getInstance().getAbilitiesFile().getInt("ABILITIES." + getName()+".DATA");
+        this.lore = Main.getInstance().getAbilitiesFile().getStringList("ABILITIES." + getName()+".LORE");
+        this.time = Main.getInstance().getAbilitiesFile().getInt("ABILITIES." + getName()+".COOLDOWN");
         this.type = type;
         this.abilityItem = new ItemBuilder(Material.getMaterial(material)).name(displayname).lore(lore).build();
 
@@ -49,8 +46,9 @@ public abstract class Ability {
         abilities.add(new ExoticBone());
         abilities.add(new NinjaStar());
         abilities.add(new Paralyzer());
+        abilities.add(new RageBall());
 
-        Bukkit.getPluginManager().registerEvents(new AbilityListener(), vAbilities.getInstance());
+        Bukkit.getPluginManager().registerEvents(new AbilityListener(), Main.getInstance());
     }
 
     public static List<Ability> getAbilitiesList() {
@@ -81,11 +79,11 @@ public abstract class Ability {
     }
 
     public List<String> executeMessage(){
-        return vAbilities.getInstance().getLangFile().getStringList("ABILITIES-LANG."+getName() + ".EXECUTE");
+        return Main.getInstance().getLangFile().getStringList("ABILITIES-LANG."+getName() + ".EXECUTE");
     }
 
     public String getAbilityMessages(String path){
-        return Color.translate(vAbilities.getInstance().getLangFile().getString("ABILITIES-LANG."+getName() + "." +path));
+        return Color.translate(Main.getInstance().getLangFile().getString("ABILITIES-LANG."+getName() + "." +path));
     }
 
     public static boolean isAbility(ItemStack itemEvent, Ability ability){

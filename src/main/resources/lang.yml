@@ -5,7 +5,7 @@ ANTI-TRAP-EFFECT:
   ALREADY-HAS: "&cThis player is already under the effects of the antitrapper."
 
 COOLDOWN:
-  GLOBAL: "&cYou cannot use another abilitie for {cooldown}."
+  GLOBAL: "&cYou cannot use another ability item for {cooldown}."
   ABILITY: "&cYou need to wait {cooldown} to use {ability}"
 
 ENVIROMENT:
@@ -53,6 +53,12 @@ ABILITIES-LANG:
       - "&cYou has been succesfully used {ability}"
       - "&cYou are on cooldown for {time}"
       - ""
-
+  RAGE-BALL:
+    EXECUTE:
+      - ""
+      - "&4&l{player}"
+      - "&cYou has been succesfully used {ability}"
+      - "&cYou are on cooldown for {time}"
+      - ""
 
 
